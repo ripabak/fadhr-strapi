@@ -545,13 +545,14 @@ export interface ApiCatalogCatalog extends Struct.CollectionTypeSchema {
   attributes: {
     actionText: Schema.Attribute.String;
     badgeText: Schema.Attribute.String;
-    color: Schema.Attribute.String &
-      Schema.Attribute.DefaultTo<'bg-neutral-800 text-white'>;
-    cover: Schema.Attribute.Media<'images' | 'videos'>;
+    bgColorHex: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'#ffffff'>;
+    cover: Schema.Attribute.Media<'images' | 'videos'> &
+      Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    darkGradient: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     description: Schema.Attribute.Text & Schema.Attribute.Required;
     link: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
@@ -565,6 +566,10 @@ export interface ApiCatalogCatalog extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    useCoverImg: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.Private &
+      Schema.Attribute.DefaultTo<false>;
     year: Schema.Attribute.String;
   };
 }

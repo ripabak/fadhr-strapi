@@ -26,25 +26,52 @@
     "link": {
       "type": "string"
     },
+    "useCoverImg": {
+      "type": "boolean",
+      "private": true,
+      "required": true,
+      "default": false
+    },
+    "bgColorHex": {
+      "type": "string",
+      "conditions": {
+        "visible": {
+          "!=": [
+            {
+              "var": "useCoverImg"
+            },
+            true
+          ]
+        }
+      },
+      "default": "#ffffff",
+      "required": true,
+      "regex": "^#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+    },
     "cover": {
       "type": "media",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "useCoverImg"
+            },
+            true
+          ]
+        }
+      },
       "multiple": false,
-      "required": false,
-      "allowedTypes": ["images", "videos"]
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "videos"
+      ]
     },
     "badgeText": {
       "type": "string"
     },
     "actionText": {
       "type": "string"
-    },
-    "color": {
-      "type": "string",
-      "default": "bg-neutral-800 text-white"
-    },
-    "darkGradient": {
-      "type": "boolean",
-      "default": false
     }
   }
 }

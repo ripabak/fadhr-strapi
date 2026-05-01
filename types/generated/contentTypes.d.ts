@@ -561,6 +561,7 @@ export interface ApiCatalogCatalog extends Struct.CollectionTypeSchema {
       'api::catalog.catalog'
     > &
       Schema.Attribute.Private;
+    logo: Schema.Attribute.Media<'images' | 'files'>;
     publishedAt: Schema.Attribute.DateTime;
     title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
